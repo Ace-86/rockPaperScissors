@@ -1,48 +1,88 @@
-
 // global variables
-let playerScore = parseInt(0);
-let computerScore = parseInt(0);
-let win = "You win, Amazing!!!";
-let lose = "You lose, get good!"
-let tie = "Its a draw";
-let user2 = computerPlay();
+let playerScore = 0; // initial player score
+let computerScore = 0; // initial computer score
+const win = "You win, Amazing!!!";
+const lose = "You lose, get good!"
+const tie = "Its a draw";
+const user2 = computerPlay(); 
 const rockButton = document.querySelector('.btn');
 const paperButton = document.querySelector('.btn2');
 const scissorButton = document.querySelector('.btn3');
-const playButton = document.querySelector('.btn4');
-const displayBox = document.querySelector('.display');
-
-
-
-
-
-
+const displayBox = document.querySelector('#display');
 
 rockButton.addEventListener("click", e => { //user clicks rock button
-    user1 = 'rock';  //user selection will be rock
+    displayBox.innerHTML = "";  // remove previous information in displayBox
+    let user1 = 'rock';  //user selection will be rock
     let user2 = computerPlay(); //computer selection will be random
-    console.log(user1);  //console log user selection
-    console.log(user2); // console log computer selection
     let result = selectWin(user1, user2);   //decide winner of round
-    displayMessage(result); //display result below selection
-}); // need to figure out how to remove result
+    
+    displayMessage("Your Choice: " + user1);
+    displayMessage("Computer's Choice: " + user2);    //display result below selection
+    displayMessage("The Result: " + result);
+    displayMessage("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one
+    
+    console.log(user1);     //console log user selection
+    console.log(user2); 
+    console.log(result);
+    console.log("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one
+    
+    if (playerScore === 5) {
+        displayMessage("You Won the Round!")
+        reset(); //resets score
+    } else if (computerScore === 5) {
+        displayMessage("You lose the round")
+        reset(); //resets score
+    }
+}); 
 
 paperButton.addEventListener("click", e => { //user clicks paper button
-    user1 = 'paper'; //user selection will be paper
+    displayBox.innerHTML = "";  // remove previous information in displayBox
+    let user1 = 'paper'; //user selection will be paper
     let user2 = computerPlay(); //computer selection will be random
-    console.log(user1);     //console log user selection
-    console.log(user2);   // console log computer selection
     let result = selectWin(user1, user2);  //decide winner of round
-    displayMessage(result); //display result below selection
-}); // need to figure out how to remove result
+    
+    displayMessage("Your Choice: " + user1);
+    displayMessage("Computer's Choice: " + user2);    //display result below selection
+    displayMessage("The Result: " + result);
+    displayMessage("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one
+    
+    console.log(user1);     //console log user selection
+    console.log(user2); 
+    console.log(result);
+    console.log("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one
+
+    if (playerScore === 5) {
+        displayMessage("You Won the Round!")
+        reset(); //resets score
+    } else if (computerScore === 5) {
+        displayMessage("You lose the round");
+        reset();  //resets score  
+    }
+}); 
 
 scissorButton.addEventListener("click", e => {  //user clicks scissor button
-    user1 = 'scissor';  //user selection will be scissor
+    displayBox.innerHTML = "";   // remove previous information in displayBox
+    let user1 = 'scissor';  //user selection will be scissor
     let user2 = computerPlay(); //computer selection will be random
-    console.log(user1);     //console log user selection
-    console.log(user2);  // console log computer selection
     let result = selectWin(user1, user2);   //decide winner of round
-    displayMessage(result);     //display result below selection
+    
+    displayMessage("Your Choice: " + user1);
+    displayMessage("Computer's Choice: " + user2);    //display result below selection
+    displayMessage("The Result: " + result);
+    displayMessage("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one
+    
+    console.log(user1);     //console log user selection
+    console.log(user2); 
+    console.log(result); 
+    console.log("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one       
+    
+    if (playerScore === 5) {
+        displayMessage("You Won the Round!")
+        reset(); //resets score
+    } else if (computerScore === 5) {
+        displayMessage("You lose the round")
+        reset(); //resets score
+    }
 });
 
 // opponent's random choice
@@ -74,7 +114,7 @@ if (user1 == user2) { //if user1 and user2 are the same
 } else if (user1== "rock" && user2 == "paper") {    //if user1 is rock and user2 is paper
     computerScore++; //increase computer score
     return lose; //loss, user 2 paper beats rock
-}   //need to figure out how to keep score accurately, numbers keep jumping up extra one
+} 
 }
 
 //decide winner of round
@@ -94,9 +134,10 @@ function displayMessage(result) { //display result of round
     displayBox.appendChild(message); //append message to display box
 }
 
-//create funnction that will display user choice and computer choice
-
-
+function reset() {
+    playerScore = 0;
+    computerScore = 0;
+}
 
 
 // for(let i = 0; i < 5; i++) {
@@ -108,4 +149,5 @@ function displayMessage(result) { //display result of round
 //     console.log("Computer's Score = " + computerScore);
 //     alert(selectWin(user1, user2));
 //     alert("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one
-//  } // Loop run 5 games, keeping score of each playerb
+//  } // Loop run 5 games, keeping score of each playerb    console.log("your score =" + playerScore + "/" + "Computer's Score =" + computerScore); //doesn't show same score as console, each point is worth 2 instead of one
+
